@@ -1751,10 +1751,10 @@
                         <h3>设计图表</h3>
                         <p>UML与系统流程图</p>
                         <ul>
-                            <li>用例图</li>
+                            <li>结构图</li>
                             <li>类图</li>
-                            <li>序列图</li>
-                            <li>数据流图</li>
+                            <li>时序图</li>
+                            <li>流程图</li>
                         </ul>
                     </div>
                 </div>
@@ -1772,7 +1772,7 @@
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-content glow-effect">
                         <h4>智能算法优化</h4>
-                        <p>采用多目标优化算法，结合贪心策略和启发式搜索，实现高效的课程安排，将传统人工排课时间从数周缩短至分钟级别。</p>
+                        <p>采用高效的遗传算法，实现一键式的智能课程安排，将传统人工排课时间从数周缩短至秒钟级别。</p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
@@ -1786,14 +1786,7 @@
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-content glow-effect">
                         <h4>可视化管理界面</h4>
-                        <p>直观的课表展示和拖拽式操作，支持快速调整和实时预览，让教务管理变得简单高效，提升用户体验。</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content glow-effect">
-                        <h4>数据分析报告</h4>
-                        <p>提供详细的资源利用率分析、教师工作量统计、教室使用效率等数据报告，为教务决策提供科学依据。</p>
+                        <p>直观的课表展示和操作，支持快速编辑和删除，让教务管理变得简单高效，提升用户体验。</p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
@@ -1816,7 +1809,7 @@
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h4><i class="fas fa-rocket"></i> 提高排课效率</h4>
-                        <p>大幅缩短排课周期，减轻教务管理员的工作负担。通过自动化处理，将排课时间从数周缩短至数分钟。</p>
+                        <p>大幅缩短排课周期，减轻教务管理员的工作负担。通过自动化处理，将排课时间从数周缩短至数秒钟。</p>
                     </div>
                     
                     <div class="feature-card">
@@ -1849,10 +1842,10 @@
                 
                 <h4>排课规则设置</h4>
                 <ul>
-                    <li>时间规则：午休/节假日禁排、连排课时限制</li>
-                    <li>教师规则：每日/周最大课时数、避免连续上课</li>
-                    <li>教室规则：特定课程安排在特定类型教室</li>
-                    <li>课程规则：互斥课程不能安排在同一天</li>
+                    <li>时间规则：课程必须安排在有效的时间段内。支持固定排课：部分课程可以预先指定上课时间</li>
+                    <li>教师规则：特定教师负责特定班级的特定课程；教师时间不能冲突</li>
+                    <li>教室规则：特定课程安排在特定类型教室；课程需要分配到可用教室；教室容量需满足班级人数；教室时间不能冲突</li>
+                    <li>课程规则：课程时间不能冲突</li>
                 </ul>
             </div>
         </div>
@@ -1877,7 +1870,7 @@
                     
                     <div class="feature-card">
                         <h4><i class="fas fa-server"></i> 后端架构</h4>
-                        <p>Flask + SQLAlchemy + MySQL，高性能的API服务</p>
+                        <p>Java + Spring Boot + SQL，高性能的API服务</p>
                     </div>
                     
                     <div class="feature-card">
@@ -1889,11 +1882,11 @@
                 <h3>核心模块设计</h3>
                 <h4>排课算法流程</h4>
                 <ol>
-                    <li>初始化：读取所有课程、教师、教室数据</li>
-                    <li>约束条件处理：应用所有排课规则</li>
-                    <li>资源分配：使用贪心算法进行初始分配</li>
-                    <li>冲突检测与优化：多目标优化资源分配</li>
-                    <li>结果输出：生成无冲突课表</li>
+                    <li>触发: 用户在前端点击“排课”按钮，并选择特定学期</li>
+                    <li>请求接收: 后端 ClassTaskServiceImpl 接收到排课请求</li>
+                    <li>读取任务: 从 tb_class_task 表中根据学期等条件 SELECT 出所有需要安排的教学任务列表</li>
+                    <li>加载约束: 读取 tb_classroom, tb_location_info, tb_class_info 等表获取教室、班级人数等约束信息。</li>
+                    <li>核心算法执行:生成无冲突或冲突最少的课表</li>
                 </ol>
                 
                 <h4>数据库设计</h4>
@@ -1960,7 +1953,7 @@
             </div>
             
             <div class="doc-content animate-on-scroll">
-                <h3>系统用例图</h3>
+                <h3>系统结构图</h3>
                 <div class="diagram-container">
                     <img src="./images/structural-diagram.png" alt="系统结构图" class="diagram" 
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1986,7 +1979,7 @@
                     </div>
                 </div>
                 
-                <h3>系统序列图</h3>
+                <h3>系统时序图</h3>
                 <div class="diagram-container">
                     <img src="./images/system-sequence.png" alt="系统时序图" class="diagram"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1999,7 +1992,7 @@
                     </div>
                 </div>
                 
-                <h3>数据流图</h3>
+                <h3>系统流程图</h3>
                 <div class="diagram-container">
                     <img src="./images/flow-chart.png" alt="系统流程图" class="diagram"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -2033,10 +2026,10 @@
                     </div>
                     <div class="member-info">
                         <h4>蔡雨坤</h4>
-                        <p>前端开发工程师</p>
+                        <p>前端开发 & 后端优化</p>
                         <div class="member-contribution">
                             <strong>贡献: 40%</strong>
-                            <p>用户界面设计、前端功能实现、交互优化、用户体验提升</p>
+                            <p>网站搭建、前端功能实现、部分后端算法实现</p>
                         </div>
                     </div>
                 </div>
@@ -2051,10 +2044,10 @@
                     </div>
                     <div class="member-info">
                         <h4>张凯</h4>
-                        <p>后端开发工程师</p>
+                        <p>后端开发 & 数据库搭建</p>
                         <div class="member-contribution">
                             <strong>贡献: 30%</strong>
-                            <p>系统架构设计、核心算法实现、数据库设计、API开发</p>
+                            <p>核心算法实现、数据库设计</p>
                         </div>
                     </div>
                 </div>
@@ -2072,7 +2065,7 @@
                         <p>测试工程师</p>
                         <div class="member-contribution">
                             <strong>贡献: 30%</strong>
-                            <p>系统各功能检验、需求分析、质量保证、用户反馈收集</p>
+                            <p>系统各功能检验、需求分析、交互优化</p>
                         </div>
                     </div>
                 </div>
@@ -2111,7 +2104,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 智能排课系统项目组 | 软件工程课程设计</p>
+                <p>&copy; 2025 智能排课系统项目组 | 信息系统课程设计</p>
             </div>
         </div>
     </footer>
